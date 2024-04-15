@@ -41,6 +41,7 @@ packages=(
     "wireguard-go"
     "gh"
     "vim"
+    "powerlevel10k"
 )
 
 # Loop over the array to install each application.
@@ -59,6 +60,14 @@ echo "$(brew --prefix)/bin/zsh" | sudo tee -a /etc/shells >/dev/null
 # Set the Homebrew zsh as default shell
 chsh -s "$(brew --prefix)/bin/zsh"
 
+# Source zshrc to configure powerlevel10k
+source ~/.zshrc
+
+# Install github copilot shell extension
+# This requires you to sign in through Gitlab website
+gh auth login
+gh extension install github/gh-copilot
+
 # Git config name
 echo "Please enter your FULL NAME for Git configuration:"
 read git_user_name
@@ -72,6 +81,7 @@ $(brew --prefix)/bin/git config --global user.name "$git_user_name"
 $(brew --prefix)/bin/git config --global user.email "$git_user_email"
 
 echo "Copy config from ${HOME}/dotfiles/settings/gitconfig to ~/.gitconfig"
+echo "Press enter to continue..."
 read
 
 # Install Prettier, which I use in both VS Code and Sublime Text
@@ -105,29 +115,29 @@ done
 
 # Tool to create dynamic wallpapers
 # https://github.com/mczachurski/wallpapper
-brew tap mczachurski/wallpapper
-brew install wallpapper
+# brew tap mczachurski/wallpapper
+# brew install wallpapper
 
 # Set dynamic wallpapers (light/dark)
-echo "Open ${HOME}/dotfiles/settings/wallpaper.json and update the path to the wallpaper images."
-read
+# echo "Open ${HOME}/dotfiles/settings/wallpaper.json and update the path to the wallpaper images."
+# read
 
-IMAGE_PATH="${HOME}/dotfiles/settings/Desktop.heic"
-wallpapper -i "${HOME}/dotfiles/settings/wallpaper.json" \
-           -o "${IMAGE_PATH}"
+# IMAGE_PATH="${HOME}/dotfiles/settings/Desktop.heic"
+# wallpapper -i "${HOME}/dotfiles/settings/wallpaper.json" \
+#            -o "${IMAGE_PATH}"
 
 # AppleScript command to set the desktop background
-echo "Setting desktop background..."
-osascript <<EOF
-tell application "System Events"
-    set desktopCount to count of desktops
-    repeat with desktopNumber from 1 to desktopCount
-        tell desktop desktopNumber
-            set picture to "${IMAGE_PATH}"
-        end tell
-    end repeat
-end tell
-EOF
+#echo "Setting desktop background..."
+#osascript <<EOF
+#tell application "System Events"
+#    set desktopCount to count of desktops
+#    repeat with desktopNumber from 1 to desktopCount
+#        tell desktop desktopNumber
+#            set picture to "${IMAGE_PATH}"
+#        end tell
+#    end repeat
+#end tell
+#EOF
 
 # Install Source Code Pro Font
 # Tap the Homebrew font cask repository if not already tapped
@@ -162,6 +172,9 @@ echo "Sign in to 1Password. Press enter to continue..."
 read
 
 echo "Sign in to Google Chrome. Press enter to continue..."
+read
+
+echo "Sign in to Google Drive. Press enter to continue..."
 read
 
 echo "Sign in to Dropbox. Press enter to continue..."

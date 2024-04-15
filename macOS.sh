@@ -6,7 +6,7 @@ echo "Complete the installation of Xcode Command Line Tools before proceeding."
 echo "Press enter to continue..."
 read
 
-# Create Code directoriy in home
+# Create Code directory in home
 mkdir -p ${HOME}/Code
 
 echo "Setting touchID as terminal authentication..."
@@ -21,5 +21,7 @@ defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 defaults write com.apple.dock autohide -bool true && killall Dock
 
 # Set Dock icon size
-defaults write com.apple.dock tilesize -int 42; killall Dock
-defaults write com.apple.dock largesize -int 90; killall Doc
+defaults write com.apple.dock tilesize -int 42
+killall Dock
+defaults write com.apple.dock largesize -int 90
+killall Dock

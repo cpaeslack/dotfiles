@@ -21,6 +21,7 @@ extensions=(
     ms-vscode-remote.remote-ssh
     foxundermoon.shell-format
     redhat.vscode-yaml
+    formulahendry.code-runner
 )
 
 # Get a list of all currently installed extensions.
@@ -43,12 +44,16 @@ VSCODE_USER_SETTINGS_DIR="${HOME}/Library/Application Support/Code/User/"
 # Check if VS Code settings directory exists
 if [ -d "$VSCODE_USER_SETTINGS_DIR" ]; then
     # Backup existing settings.json and keybindings.json, if they exist
-    cp "${VSCODE_USER_SETTINGS_DIR}/settings.json" "${VSCODE_USER_SETTINGS_DIR}/settings.json.backup"
-    cp "${VSCODE_USER_SETTINGS_DIR}/keybindings.json" "${VSCODE_USER_SETTINGS_DIR}/keybindings.json.backup"
+    if [ -f "${VSCODE_USER_SETTINGS_DIR}/settings.json" ]; then
+        cp -v "${VSCODE_USER_SETTINGS_DIR}/settings.json" "${VSCODE_USER_SETTINGS_DIR}/settings.json.backup"
+    fi
+    if [ -f "${VSCODE_USER_SETTINGS_DIR}/keybindings.json" ]; then
+        cp -v "${VSCODE_USER_SETTINGS_DIR}/keybindings.json" "${VSCODE_USER_SETTINGS_DIR}/keybindings.json.backup"
+    fi
 
     # Copy your custom settings.json and keybindings.json to the VS Code settings directory
-    cp "settings/VSCode-Settings.json" "${VSCODE_USER_SETTINGS_DIR}/settings.json"
-    cp "settings/VSCode-Keybindings.json" "${VSCODE_USER_SETTINGS_DIR}/keybindings.json"
+    cp -v "settings/VSCode-Settings.json" "${VSCODE_USER_SETTINGS_DIR}/settings.json"
+    cp -v "settings/VSCode-Keybindings.json" "${VSCODE_USER_SETTINGS_DIR}/keybindings.json"
 
     echo "VS Code settings and keybindings have been updated."
 else

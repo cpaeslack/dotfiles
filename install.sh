@@ -26,11 +26,11 @@ done
 # Run the MacOS Script
 ./macOS.sh
 
-# Run the Homebrew Script
-./brew.sh
-
 # Run the Zsh Script
 ./zsh.sh
+
+# Run the Homebrew Script
+./brew.sh
 
 # Run VS Code Script
 ./vscode.sh
@@ -43,18 +43,14 @@ echo
 echo " (1) BetterSnapTool (https://apps.apple.com/de/app/bettersnaptool/id417375580?mt=12)"
 echo "Press enter to continue..."
 read
-echo " (2) Overcast (https://apps.apple.com/de/app/overcast/id888422857)"
-echo "Press enter to continue..."
-read
-echo " (3) TEFView (https://apps.apple.com/de/app/tefview/id542912513?mt=12)"
-echo "Press enter to continue..."
-read
 echo " (4) Hidden Bar (https://apps.apple.com/de/app/hidden-bar/id1452453066?mt=12)"
+echo "Press enter to continue..."
 echo "Press enter to continue..."
 read
 
 echo
 echo "Copy your SSH config manually..."
+echo "Press enter to continue..."
 echo "Press enter to continue..."
 read
 
