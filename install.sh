@@ -45,12 +45,10 @@ echo "Press enter to continue..."
 read
 echo " (4) Hidden Bar (https://apps.apple.com/de/app/hidden-bar/id1452453066?mt=12)"
 echo "Press enter to continue..."
-echo "Press enter to continue..."
 read
 
 echo
 echo "Copy your SSH config manually..."
-echo "Press enter to continue..."
 echo "Press enter to continue..."
 read
 
