@@ -6,7 +6,6 @@
 # And also sets up VS Code
 # And also sets up Oh My Zsh and Powerlevel10k
 ############################
-set -e
 
 # dotfiles directory
 dotfiledir="${HOME}/dotfiles"
