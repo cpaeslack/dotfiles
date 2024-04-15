@@ -9,8 +9,8 @@ read
 # Create Code directoriy in home
 mkdir -p ${HOME}/Code
 
-echo "Setting touchID as terminal authentication"
-echo "Will need sudo password"
+echo "Setting touchID as terminal authentication..."
+echo "(may need sudo password)"
 sudo cp -v /etc/pam.d/sudo /etc/pam.d/sudo.bak
 sudo cp -v settings/sudo /etc/pam.d/
 
