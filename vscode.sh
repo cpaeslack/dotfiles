@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+set -e
 
 # Check if Homebrew's bin exists and if it's not already in the PATH
 if [ -x "/opt/homebrew/bin/brew" ] && [[ ":$PATH:" != *":/opt/homebrew/bin:"* ]]; then
@@ -13,10 +14,14 @@ extensions=(
     ms-python.debugpy
     GitHub.copilot
     ms-vscode.Theme-PredawnKit
-    teabyii.ayu
-    formulahendry.code-runner
     esbenp.prettier-vscode
-    znck.grammarly
+    mikestead.dotenv
+    dbaeumer.vscode-eslint
+    clemenspeters.format-json
+    azuretools.vscode-docker
+    ms-vscode-remote.remote-ssh
+    foxundermoon.shell-format
+    redhat.vscode-yaml
 )
 
 # Get a list of all currently installed extensions.
@@ -53,6 +58,6 @@ fi
 
 # Open VS Code to sign-in to extensions
 code .
-echo "Login to extensions (Copilot, Grammarly, etc) within VS Code."
+echo "Login to extensions (Copilot, etc) within VS Code."
 echo "Press enter to continue..."
 read

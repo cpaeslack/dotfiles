@@ -1,0 +1,11 @@
+[
+    {
+        "fileName": "/Users/christopher/Downloads/<PATH TO LIGHT IMAGE>",
+        "isPrimary": true,
+        "isForLight": true
+    },
+    {
+        "fileName": "/Users/christopher/Downloads/<PATH TO DARK IMAGE>",
+        "isForDark": true
+    }
+]

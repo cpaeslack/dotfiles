@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+set -e
 
 xcode-select --install
 
@@ -6,20 +7,20 @@ echo "Complete the installation of Xcode Command Line Tools before proceeding."
 echo "Press enter to continue..."
 read
 
-# Set scroll as traditional instead of natural
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false && killall Finder
+# Create Code directoriy in home
+mkdir -p ${HOME}/Code
 
-# Get the absolute path to the image
-IMAGE_PATH="${HOME}/dotfiles/settings/Desktop.png"
+echo "Setting touchID as terminal authentication"
+echo "Will need sudo password"
+sudo cp -v /etc/pam.d/sudo /etc/pam.d/sudo.bak
+sudo cp -v settings/sudo /etc/pam.d/
 
-# AppleScript command to set the desktop background
-osascript <<EOF
-tell application "System Events"
-    set desktopCount to count of desktops
-    repeat with desktopNumber from 1 to desktopCount
-        tell desktop desktopNumber
-            set picture to "$IMAGE_PATH"
-        end tell
-    end repeat
-end tell
-EOF
+# Enable trackpad tap to click
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+
+# Set Dock to auto-hide
+defaults write com.apple.dock autohide -bool true && killall Dock
+
+# Set Dock icon size
+defaults write com.apple.dock tilesize -int 42; killall Dock
+defaults write com.apple.dock largesize -int 90; killall Doc

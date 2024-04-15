@@ -1,4 +1,5 @@
 #!/usr/bin/env zsh
+set -e
 
 # Install Homebrew if it isn't already installed
 if ! command -v brew &>/dev/null; then
@@ -29,23 +30,27 @@ brew cleanup
 
 # Define an array of packages to install using Homebrew.
 packages=(
+    "bat"
     "python"
-    "bash"
-    "zsh"
     "git"
     "tree"
+    "bash"
+    "zsh"
     "pylint"
     "black"
     "node"
+    "wireguard-go"
+    "gh"
+    "vim"
 )
 
 # Loop over the array to install each application.
 for package in "${packages[@]}"; do
-    if brew list --formula | grep -q "^$package\$"; then
-        echo "$package is already installed. Skipping..."
+    if brew list --formula | grep -q "^${package}\$"; then
+        echo "${package} is already installed. Skipping..."
     else
-        echo "Installing $package..."
-        brew install "$package"
+        echo "Installing ${package}..."
+        brew install "${package}"
     fi
 done
 
@@ -67,27 +72,26 @@ read git_user_email
 $(brew --prefix)/bin/git config --global user.name "$git_user_name"
 $(brew --prefix)/bin/git config --global user.email "$git_user_email"
 
-# Create the tutorial virtual environment I use frequently
-$(brew --prefix)/bin/python3 -m venv "${HOME}/tutorial"
+echo "Copy config from ${HOME}/dotfiles/settings/gitconfig to ~/.gitconfig"
+read
 
 # Install Prettier, which I use in both VS Code and Sublime Text
 $(brew --prefix)/bin/npm install --global prettier
 
 # Define an array of applications to install using Homebrew Cask.
 apps=(
+    "1password"
     "google-chrome"
-    "firefox"
-    "brave-browser"
-    "sublime-text"
-    "visual-studio-code"
-    "virtualbox"
-    "spotify"
-    "discord"
     "google-drive"
+    "thonny"
+    "tor-browser"
+    "visual-studio-code"
     "gimp"
     "vlc"
-    "rectangle"
-    "postman"
+    "docker"
+    "iterm2"
+    "dropbox"
+    "beekeeper-studio"
 )
 
 # Loop over the array to install each application.
@@ -99,6 +103,32 @@ for app in "${apps[@]}"; do
         brew install --cask "$app"
     fi
 done
+
+# Tool to create dynamic wallpapers
+# https://github.com/mczachurski/wallpapper
+brew tap mczachurski/wallpapper
+brew install wallpapper
+
+# Set dynamic wallpapers (light/dark)
+echo "Open ${HOME}/dotfiles/settings/wallpaper.json and update the path to the wallpaper images."
+read
+
+IMAGE_PATH="${HOME}/dotfiles/settings/Desktop.heic"
+wallpapper -i "${HOME}/dotfiles/settings/wallpaper.json" \
+           -o "${IMAGE_PATH}"
+
+# AppleScript command to set the desktop background
+echo "Setting desktop background..."
+osascript <<EOF
+tell application "System Events"
+    set desktopCount to count of desktops
+    repeat with desktopNumber from 1 to desktopCount
+        tell desktop desktopNumber
+            set picture to "${IMAGE_PATH}"
+        end tell
+    end repeat
+end tell
+EOF
 
 # Install Source Code Pro Font
 # Tap the Homebrew font cask repository if not already tapped
@@ -117,8 +147,9 @@ fi
 
 # Once font is installed, Import your Terminal Profile
 echo "Import your terminal settings..."
-echo "Terminal -> Settings -> Profiles -> Import..."
-echo "Import from ${HOME}/dotfiles/settings/Pro.terminal"
+echo "iTerm2 -> Settings -> Profiles -> Import..."
+echo "Import from ${HOME}/dotfiles/settings/iterm2-profile.json"
+echo "Make default setting"
 echo "Press enter to continue..."
 read
 
@@ -128,17 +159,11 @@ brew upgrade
 brew upgrade --cask
 brew cleanup
 
+echo "Sign in to 1Password. Press enter to continue..."
+read
+
 echo "Sign in to Google Chrome. Press enter to continue..."
 read
 
-echo "Sign in to Spotify. Press enter to continue..."
-read
-
-echo "Sign in to Discord. Press enter to continue..."
-read
-
-echo "Open Rectangle and give it necessary permissions. Press enter to continue..."
-read
-
-echo "Import your Rectangle settings located in ~/dotfiles/settings/RectangleConfig.json. Press enter to continue..."
+echo "Sign in to Dropbox. Press enter to continue..."
 read

@@ -5,10 +5,10 @@
   "debug.console.fontFamily": "Source Code Pro",
   "editor.fontWeight": "500",
   "terminal.integrated.fontWeight": "600",
-  "editor.fontSize": 16, //Use 22 for Screen Recordings
-  "debug.console.fontSize": 16, //Use 22 for Screen Recordings
-  "terminal.integrated.fontSize": 16, //Use 22 for Screen Recordings
-  "window.zoomLevel": 0, // Use 2 for Screen Recordings
+  "editor.fontSize": 16,
+  "debug.console.fontSize": 16,
+  "terminal.integrated.fontSize": 16,
+  "window.zoomLevel": 0,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[shellscript]": {
@@ -21,7 +21,7 @@
       "source.organizeImports": "always"
     }
   },
-  "pylint.args": ["--disable=C0114,C0115,C0116"],
+  "pylint.args": ["--disable=C0114"],
   "code-runner.clearPreviousOutput": true,
   "code-runner.showExecutionMessage": false,
   "code-runner.ignoreSelection": true,
@@ -44,5 +44,6 @@
   "workbench.settings.openDefaultSettings": true,
   "workbench.settings.useSplitJSON": false,
   "workbench.settings.editor": "json",
-  "workbench.startupEditor": "newUntitledFile"
+  "editor.renderWhitespace": "all",
+  "redhat.telemetry.enabled": false
 }
